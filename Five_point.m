@@ -20,12 +20,17 @@ for j=1:size-1
     A(j+1, j)=1;
 end
 
-for i=1:size-4
-    A(i, i+4)=beta^2;
+for i=imax-2:imax-2:size-(imax-2)
+    A(i, i+1)=0;
+    A(i+1, i)=0;
 end
 
-for j=1:size-4
-    A(j+4, j)=beta^2;
+for i=1:size-(imax-2)
+    A(i, i+(imax-2))=beta^2;
+end
+
+for j=1:size-(imax-2)
+    A(j+(imax-2), j)=beta^2;
 end
 
 %matrix C
