@@ -1,3 +1,5 @@
+%Jacobi iteration method
+
 function [u, residual] = Jacobi(u, dx, dy, imax, jmax, maxiter, tolerance)
 
 beta=dx/dy;

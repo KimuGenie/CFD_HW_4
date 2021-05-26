@@ -1,3 +1,5 @@
+%Five Point formula
+
 function u = Five_point(u, dx, dy, imax, jmax)
 
 beta = dx/dy;
