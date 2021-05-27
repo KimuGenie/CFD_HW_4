@@ -9,10 +9,10 @@ jmax=41;
 L=1;
 H=2;
 
-method = 5;
+method = 8;
 maxiteration = 1000;
 tolerance = 0.0001;
-omega = 1.7; %relaxation parameter
+omega = 1.3; %relaxation parameter
 
 exactsolution = 1; %exact solution을 같이 표시하려면 1, 아니면 0
 
@@ -22,7 +22,8 @@ level = 10:10:90;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %method
 %1.Five Point  2.Jacobi  3.Point Gauss-Seidel 4.Line Gauss-Seidel 
-%5.Point Successive Over-Relaxation
+%5.Point Successive Over-Relaxation  6.Line Successive Over-Relaxation
+%7.Alternating Direction Implicit method  8.Alternating Direction Implicit Over-Relaxation method
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -48,6 +49,12 @@ elseif method == 4
     [u, residual] = LGS(u, dx, dy, imax, jmax, maxiteration, tolerance);
 elseif method == 5
     [u, residual] = PSOR(u, dx, dy, imax, jmax, maxiteration, tolerance, omega);
+elseif method == 6
+    [u, residual] = LSOR(u, dx, dy, imax, jmax, maxiteration, tolerance, omega);
+elseif method == 7
+    [u, residual] = ADI(u, dx, dy, imax, jmax, maxiteration, tolerance);
+elseif method == 8
+    [u, residual] = ADIOR(u, dx, dy, imax, jmax, maxiteration, tolerance, omega);
 end
 
 hold on
