@@ -14,9 +14,11 @@ while k<=maxiter
         end
     end
     u=ucurr;
-    residual(k)=abs(mean(ucurr-uprev, 'all'));
+    residual(k)=mean(abs(u-uprev), 'all');
     if residual(k)<=tolerance
         break
     end
     k=k+1;
+end
+
 end

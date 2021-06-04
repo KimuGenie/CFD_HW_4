@@ -12,9 +12,11 @@ while k<=maxiter
             u(i, j) = (u(i+1, j)+u(i-1, j)+beta^2*(u(i, j+1)+u(i, j-1)))/(2*(1+beta^2));
         end
     end
-    residual(k)=abs(mean(u-uprev, 'all'));
+    residual(k)=mean(abs(u-uprev), 'all');
     if residual(k)<=tolerance
         break
     end
     k=k+1;
+end
+
 end
