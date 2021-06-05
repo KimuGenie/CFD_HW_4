@@ -26,15 +26,13 @@ Aj(jmax-2, jmax-2) = alpha;
 
 Cj=zeros(jmax-2, 1);
 
-uprevj=u;
-
 while k<=maxiter
     uprev=u;
     
         %y-sweep
     for i=2:imax-1
         for j=2:jmax-1
-            Cj(j-1) = (1-omega)*alpha*uprev(i, j)-omega*(uprev(i+1, j)+u(i-1, j));
+            Cj(j-1) = (1-omega)*alpha*u(i, j)-omega*(u(i+1, j)+u(i-1, j));
         end
         Cj(1) = Cj(1)-omega*beta^2*u(i, 1);
         Cj(jmax-2) = Cj(imax-2)-omega*beta^2*u(i, jmax);
@@ -42,14 +40,14 @@ while k<=maxiter
         U=Aj\Cj; %Gauss elimination
         
         for j=2:jmax-1
-            uprevj(i, j) = U(j-1);
+            u(i, j) = U(j-1);
         end
     end
     
     %x-sweep
     for j=2:jmax-1
         for i=2:imax-1
-            Ci(i-1) = (1-omega)*alpha*u(i, j)-omega*beta^2*(uprevj(i, j+1)+u(i, j-1));
+            Ci(i-1) = (1-omega)*alpha*u(i, j)-omega*beta^2*(u(i, j+1)+u(i, j-1));
         end
         Ci(1) = Ci(1)-omega*u(1, j);
         Ci(imax-2) = Ci(imax-2)-omega*u(imax, j);
